@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko')">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,445 +13,429 @@
     --navy:    #171B71;
     --navy-l:  rgba(23,27,113,0.07);
     --white:   #FFFFFF;
-    --bg:      #F4F6FB;
-    --gray-100:#EEEDE9;
-    --gray-200:#D5D3CC;
-    --gray-400:#9B9991;
-    --text:    #111110;
-    --muted:   #5A5855;
-    --subtle:  #9B9991;
-    --border:  rgba(0,0,0,0.08);
-    --am-bg:#FEF3E2;--am-bd:#FDDDA0;--am-text:#7A4700;--am-bar:#F5B942;
-    --bl-bg:#EAF2FD;--bl-bd:#A8CFF5;--bl-text:#1A4E8C;--bl-bar:#5BA3E8;
-    --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;
+    --text:    #111111;
+    --muted:   #555555;
+    --subtle:  #888888;
+    --border:  rgba(0,0,0,0.06);
+    
+    --r-sm:4px;--r-md:10px;--r-lg:18px;--r-xl:26px;
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{
-    font-family:'Apple SD Gothic Neo','Noto Sans KR',-apple-system,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
-  }
-
-  /* ─────────────────────────
-     전체 페이지 래퍼
-  ───────────────────────── */
-  .page-outer{
-    max-width:780px;
-    margin:0 auto;
-    padding:0 1rem 3rem;
+  
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+    /* 이미지 1번의 민트~블루 부드러운 그라데이션 배경 구현 */
+    background: linear-gradient(135deg, #74caae 0%, #a1cae6 50%, #9bc3e6 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 30px 20px;
   }
 
-  /* ─────────────────────────
-     상단 로고 바
-  ───────────────────────── */
-  .top-bar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:1.25rem 0 0;
-  }
-  .top-logo{display:flex;align-items:center;gap:8px;}
-  .logo-mark{
-    width:36px;height:36px;
-    background:linear-gradient(135deg,var(--green),var(--navy));
-    border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:10px;font-weight:800;color:#fff;letter-spacing:-0.5px;
-  }
-  .top-right{
-    width:36px;height:36px;border-radius:50%;
-    border:1.5px solid var(--border);
-    background:var(--white);
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-  }
-  .top-right img{width:24px;height:24px;object-fit:contain;}
-
-  /* 타이틀 배너 */
-  .title-banner{
-    text-align:center;
-    padding:2rem 0 1.5rem;
-    position:relative;
-  }
-  .title-banner::after{
-    content:'';
-    display:block;
-    width:6px;height:6px;border-radius:50%;
-    background:var(--navy);
-    margin:1rem auto 0;
-  }
-  .title-banner h1{
-    font-size:36px;font-weight:800;
-    background:linear-gradient(120deg,var(--navy) 30%,var(--green) 100%);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;
-    letter-spacing:-1px;line-height:1.2;
+  .page-outer {
+    max-width: 820px;
+    margin: 0 auto;
   }
 
-  /* ─────────────────────────
-     히어로 카드
-  ───────────────────────── */
-  .hero-section{
-    background:linear-gradient(135deg,
-      rgba(23,27,113,0.04) 0%,
-      rgba(0,146,69,0.06) 50%,
-      rgba(23,27,113,0.05) 100%),
-      var(--white);
-    border:1px solid rgba(23,27,113,0.12);
-    border-radius:var(--r-xl);
-    overflow:hidden;
-    margin-bottom:2rem;
+  /* 상단 로고 바 */
+  .top-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 10px;
+  }
+  /* 추가된 상단 로고 이미지 스타일 */
+  .top-logo img {
+    height: 38px;
+    width: auto;
+    mix-blend-mode: multiply; /* 로고 주변의 흰색 배경 투명화 배합 */
+    display: block;
+  }
+  .top-right-icon {
+    width: 38px; height: 38px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  }
+
+  /* 타이틀 배너 - 이미지 1의 파란 테두리 라운드 상자 스타일 */
+  .title-container {
+    border: 1.5px solid #1c50a3;
+    border-radius: var(--r-xl);
+    padding: 35px 20px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  /* 하단 중앙의 데코용 원 포인트 라인 효과 */
+  .title-container::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 8px; height: 8px;
+    background: #1c50a3;
+    border-radius: 50%;
+  }
+  .title-container h1 {
+    font-size: 52px; font-weight: 700;
+    color: #12519b;
+    letter-spacing: -1px;
+    font-family: 'Apple SD Gothic Neo', sans-serif;
   }
 
   /* 서브 헤더 바 */
-  .hero-subbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:10px 1.25rem;
-    border-bottom:1px solid rgba(23,27,113,0.08);
-    background:rgba(23,27,113,0.03);
+  .info-subbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 2px 14px 2px;
+    border-top: 1.5px solid #1c50a3;
+    margin-bottom: 15px;
   }
-  .subbar-left{
-    font-size:10px;font-weight:700;letter-spacing:1.5px;
-    color:var(--navy);text-transform:uppercase;
+  .subbar-title {
+    font-size: 13.5px; font-weight: 800; color: #1c50a3;
+    letter-spacing: 1px; text-transform: uppercase;
   }
-  .subbar-right{position:relative;}
-  .issue-select{
-    font-size:11px;border:1px solid rgba(23,27,113,0.15);
-    border-radius:var(--r-sm);background:var(--white);
-    color:var(--navy);padding:4px 24px 4px 9px;cursor:pointer;
-    appearance:none;-webkit-appearance:none;font-weight:500;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23171B71' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right 7px center;
-  }
-
-  /* 히어로 바디 */
-  .hero-body{
-    display:grid;grid-template-columns:1fr 200px;
-    gap:0;
-  }
-  .hero-main{
-    padding:1.25rem 1.25rem 1.25rem;
-    border-right:1px solid rgba(23,27,113,0.08);
-  }
-  .hero-eyebrow{
-    display:flex;align-items:center;gap:7px;margin-bottom:10px;
-  }
-  .eyebrow-badge{
-    display:flex;align-items:center;gap:5px;
-    font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;
-    color:var(--green-d);
-    background:rgba(0,146,69,0.1);border:1px solid rgba(0,146,69,0.2);
-    padding:2px 8px;border-radius:100px;
-  }
-  .eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
-  .eyebrow-year{
-    font-size:10px;padding:2px 7px;border-radius:100px;
-    background:rgba(23,27,113,0.07);color:var(--navy);font-weight:600;
-    border:1px solid rgba(23,27,113,0.1);
-  }
-  .hero-title{
-    font-size:15px;font-weight:800;color:var(--navy);
-    line-height:1.45;margin-bottom:8px;letter-spacing:-0.3px;
-  }
-  .hero-sub{font-size:11.5px;color:var(--muted);line-height:1.65;margin-bottom:12px;}
-  .hero-tags{display:flex;gap:5px;flex-wrap:wrap;}
-  .htag{
-    font-size:10px;padding:2px 8px;border-radius:100px;font-weight:500;
-    background:rgba(23,27,113,0.05);color:var(--navy);
-    border:1px solid rgba(23,27,113,0.1);
+  .issue-select {
+    font-size: 12px; border: 1.5px solid #1c50a3;
+    border-radius: 20px; background: var(--white);
+    color: #1c50a3; padding: 5px 32px 5px 14px; cursor: pointer;
+    appearance: none; -webkit-appearance: none; font-weight: 600;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231c50a3' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
   }
 
-  /* 히어로 우측 대시보드 */
-  .hero-dash{
-    padding:1rem;
-    display:flex;flex-direction:column;gap:6px;
-    background:rgba(255,255,255,0.5);
+  /* 메인 브리프 및 대시보드 박스 (Hero) */
+  .hero-card {
+    background: var(--white);
+    border-radius: var(--r-md);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    margin-bottom: 35px;
   }
-  .dash-label{font-size:9px;font-weight:700;color:var(--subtle);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:2px;}
-  .dash-row{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:7px 9px;border-radius:var(--r-md);
-    border:1px solid var(--border);background:var(--white);
-    cursor:pointer;transition:all 0.12s;
+  .hero-body {
+    display: grid; grid-template-columns: 1fr 240px; gap: 24px;
   }
-  .dash-row:hover{border-color:rgba(23,27,113,0.18);}
-  .dash-row.active{border-color:rgba(23,27,113,0.2);background:#F3F4FC;}
-  .dash-row-left{display:flex;align-items:center;gap:6px;}
-  .d-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0;}
-  .d-all{background:var(--gray-400);}
-  .d-impact{background:var(--green);}
-  .d-watch{background:var(--am-bar);}
-  .d-ref{background:var(--bl-bar);}
-  .d-name{font-size:11px;color:var(--text);font-weight:500;}
-  .d-count{font-size:16px;font-weight:800;color:var(--navy);line-height:1;}
-
-  /* ─────────────────────────
-     뉴스 카드 섹션
-  ───────────────────────── */
-  .news-label{
-    display:flex;align-items:center;gap:8px;
-    margin-bottom:10px;
+  
+  /* 좌측 메인 뉴스 브리프 */
+  .hero-main {
+    padding-right: 5px;
   }
-  .news-label-text{
-    font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;
-    color:var(--muted);white-space:nowrap;
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 12px;
+    font-size: 11px; font-weight: 700; color: #009245; letter-spacing: 0.5px;
   }
-  .news-label-line{flex:1;height:1px;background:var(--border);}
-
-  .cards-grid{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:10px;
+  .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: #009245; }
+  .eyebrow-date { color: #888888; background: #eef1f6; padding: 2px 10px; border-radius: 12px; font-weight: 600; font-size: 10.5px; }
+  
+  .hero-title {
+    font-size: 19px; font-weight: 800; color: #111111;
+    line-height: 1.45; margin-bottom: 12px; word-break: keep-all;
+  }
+  .hero-sub {
+    font-size: 12.5px; color: #666666; line-height: 1.65; margin-bottom: 18px; word-break: keep-all;
+  }
+  .hero-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .htag {
+    font-size: 11.5px; padding: 3px 12px; border-radius: 20px; font-weight: 500;
+    background: #eaf7f0; color: #009245; border: 1px solid #cceadd;
   }
 
-  .card{
-    background:var(--white);
-    border:1px solid var(--border);
-    border-radius:var(--r-lg);
-    overflow:hidden;
-    cursor:pointer;
-    transition:box-shadow 0.15s,border-color 0.15s;
-    display:flex;flex-direction:column;
+  /* 우측 이슈 현황 대시보드 */
+  .hero-dash {
+    border-left: 1px solid #eeeeee;
+    padding-left: 20px;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .card:hover{box-shadow:0 2px 14px rgba(0,0,0,0.07);border-color:rgba(0,0,0,0.13);}
+  .dash-label {
+    font-size: 11px; font-weight: 700; color: #888888; margin-bottom: 10px; text-transform: uppercase;
+  }
+  .dash-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 10px; border-radius: var(--r-sm);
+    background: #ffffff; margin-bottom: 5px; border: 1px solid #e9e9e9;
+    cursor: pointer; transition: all 0.15s ease-in-out;
+  }
+  .dash-row:hover, .dash-row.active {
+    background: #f1f5f9; border-color: #cbd5e1;
+  }
+  .dash-row-left { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: #333; }
+  .d-dot { width: 7px; height: 7px; border-radius: 2px; }
+  .d-all { background: #888b93; }
+  .d-impact { background: var(--green); }
+  .d-watch { background: #f5b942; }
+  .d-ref { background: #5ba3e8; }
+  
+  .dash-row-right { display: flex; align-items: center; gap: 12px; }
+  .d-count { font-size: 13.5px; font-weight: 800; min-width: 12px; text-align: right; color: #111; }
+  
+  /* 프로그레스 가로 게이지 바 */
+  .d-bar-container { width: 45px; height: 3px; background: #e2e8f0; border-radius: 2px; overflow: hidden; }
+  .d-bar { height: 100%; width: 0%; transition: width 0.4s ease; }
+  .dash-row[data-type="all"] .d-bar { background: #888b93; }
+  .dash-row[data-type="impact"] .d-bar { background: var(--green); }
+  .dash-row[data-type="watch"] .d-bar { background: #f5b942; }
+  .dash-row[data-type="ref"] .d-bar { background: #5ba3e8; }
 
-  .card-top-bar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:8px 12px 0;
+  /* 전체 이슈 가로 구분선 레이블 */
+  .section-title-container {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px; margin-top: 5px;
   }
-  .card-badges{display:flex;align-items:center;gap:6px;}
-  .badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;flex-shrink:0;}
-  .bi{background:rgba(0,146,69,0.09);color:var(--green-d);border:1px solid rgba(0,146,69,0.2);}
-  .bw{background:var(--am-bg);color:var(--am-text);border:1px solid var(--am-bd);}
-  .br{background:var(--bl-bg);color:var(--bl-text);border:1px solid var(--bl-bd);}
-  .card-cat{font-size:10px;color:var(--subtle);}
-  .card-date{font-size:10px;color:var(--subtle);}
+  .section-title {
+    font-size: 14px; font-weight: 700; color: #3b4354; white-space: nowrap;
+  }
+  .section-line { flex: 1; height: 1px; background: rgba(23,27,113,0.15); }
 
-  .card-inner{padding:8px 12px 10px;flex:1;display:flex;flex-direction:column;}
-  .card h3{font-size:13px;font-weight:700;color:var(--navy);line-height:1.45;margin-bottom:5px;}
-  .card-summary{font-size:11.5px;color:var(--muted);line-height:1.6;flex:1;}
+  /* 뉴스 카드 2X2 그리드 레이아웃 */
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-bottom: 45px;
+  }
+  
+  .card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: var(--r-md);
+    overflow: hidden; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  }
 
-  .card-footer{
-    margin-top:8px;padding:8px 12px;
-    border-top:1px solid var(--border);
-    display:flex;align-items:center;justify-content:space-between;
+  .card-top-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px 6px;
   }
-  .card-src{font-size:10px;color:var(--subtle);}
-  .card-toggle{font-size:10px;color:var(--subtle);}
+  .card-badges { display: flex; align-items: center; gap: 6px; }
+  
+  /* 배지 스타일 최적화 (형태 및 텍스트 굵기) */
+  .badge {
+    font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+  }
+  .card.impact .badge { background: #eaf7f0; color: #009245; }
+  .card.watch .badge { background: #fff4dc; color: #b77c00; }
+  .card.ref .badge { background: #eaf2fd; color: #1a4e8c; }
+  
+  .card-cat { font-size: 11.5px; color: #666666; font-weight: 500; margin-left: 2px; }
+  .card-date { font-size: 11.5px; color: #a1a1a1; }
 
-  /* 카드 좌측 컬러 바 */
-  .card{border-left:3px solid transparent;}
-  .card.impact{border-left-color:var(--green);}
-  .card.watch {border-left-color:var(--am-bar);}
-  .card.ref   {border-left-color:var(--bl-bar);}
+  .card-inner { padding: 6px 16px 14px; flex: 1; }
+  .card h3 {
+    font-size: 14.5px; font-weight: 700; color: #111111; line-height: 1.45; margin-bottom: 6px;
+    word-break: keep-all;
+  }
+  .card-summary {
+    font-size: 12.5px; color: #555555; line-height: 1.6; word-break: keep-all;
+  }
 
-  /* DRAWER */
-  .drawer{background:#FAFAF8;border-top:1px solid var(--border);padding:10px 12px;display:none;}
-  .drawer.open{display:block;}
-  .drawer-detail{font-size:12px;color:var(--text);line-height:1.75;margin-bottom:9px;}
-  .drawer-cso{
-    background:linear-gradient(135deg,rgba(0,146,69,0.06),rgba(23,27,113,0.04));
-    border:1px solid rgba(0,146,69,0.15);border-radius:var(--r-md);
-    padding:9px 11px;margin-bottom:9px;
+  .card-footer {
+    padding: 11px 16px; border-top: 1px solid #f5f5f5;
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fafafa;
   }
-  .drawer-cso-label{font-size:9px;font-weight:700;color:var(--green-d);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
-  .drawer-cso-text{font-size:11.5px;color:var(--muted);line-height:1.65;}
-  .drawer-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;}
-  .drawer-meta{font-size:10px;color:var(--subtle);}
-  .src-link{
-    font-size:10px;color:var(--navy);text-decoration:none;
-    padding:3px 8px;background:rgba(23,27,113,0.06);
-    border-radius:var(--r-sm);border:1px solid rgba(23,27,113,0.14);
-  }
-  .src-link:hover{background:rgba(23,27,113,0.1);}
+  .card-src { font-size: 11.5px; color: #777777; }
+  .card-toggle { font-size: 11.5px; color: #777777; font-weight: 500; }
 
-  /* SPOTLIGHT (주목 이슈) */
-  .spotlight{
-    background:var(--white);border:1px solid var(--border);
-    border-radius:var(--r-lg);overflow:hidden;
-    display:grid;grid-template-columns:4px 1fr;
-    margin-bottom:1.25rem;cursor:pointer;
-    transition:box-shadow 0.15s,border-color 0.15s;
+  /* 상세보기 아코디언 드로어 */
+  .drawer {
+    background: #f8f9fa; border-top: 1px solid #ededed;
+    padding: 16px; display: none;
   }
-  .spotlight:hover{box-shadow:0 2px 14px rgba(0,0,0,0.07);border-color:rgba(0,0,0,0.13);}
-  .sp-accent{background:linear-gradient(to bottom,var(--green),var(--navy));}
-  .sp-body{padding:1rem 1.25rem;display:grid;grid-template-columns:1fr 200px;gap:1rem;align-items:start;}
-  .sp-badge{
-    display:inline-flex;align-items:center;gap:4px;
-    font-size:9px;font-weight:700;color:var(--green-d);
-    background:rgba(0,146,69,0.08);border:1px solid rgba(0,146,69,0.18);
-    padding:2px 7px;border-radius:100px;margin-bottom:6px;
+  .drawer.open { display: block; }
+  .drawer-detail { font-size: 12.5px; color: #222222; line-height: 1.7; margin-bottom: 12px; word-break: keep-all; }
+  
+  .drawer-cso {
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--r-sm);
+    padding: 12px; margin-bottom: 12px;
   }
-  .sp-title{font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:5px;}
-  .sp-text{font-size:11.5px;color:var(--muted);line-height:1.7;}
-  .sp-src{font-size:10px;color:var(--subtle);margin-top:8px;}
-  .sp-cso{
-    background:linear-gradient(135deg,rgba(0,146,69,0.06),rgba(23,27,113,0.04));
-    border:1px solid rgba(0,146,69,0.15);border-radius:var(--r-md);padding:10px 12px;
+  .drawer-cso-label { font-size: 10.5px; font-weight: 700; color: #009245; margin-bottom: 5px; text-transform: uppercase; }
+  .drawer-cso-text { font-size: 12px; color: #444444; line-height: 1.6; word-break: keep-all; }
+  
+  .drawer-foot { display: flex; align-items: center; justify-content: space-between; }
+  .drawer-meta { font-size: 11px; color: #999999; }
+  .src-link {
+    font-size: 11px; color: #171b71; text-decoration: none;
+    padding: 4px 10px; background: rgba(23,27,113,0.05); border-radius: 4px; font-weight: 600;
+    border: 1px solid rgba(23,27,113,0.1); transition: background 0.2s;
   }
-  .sp-cso-label{font-size:9px;font-weight:700;color:var(--green-d);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;}
-  .sp-cso-text{font-size:11.5px;color:var(--muted);line-height:1.65;}
+  .src-link:hover { background: rgba(23,27,113,0.1); }
 
-  .empty{grid-column:span 2;text-align:center;padding:2.5rem;color:var(--subtle);font-size:12px;}
+  .empty { grid-column: span 2; text-align: center; padding: 40px; color: #777777; font-size: 13px; background: #fff; border-radius: 8px; }
 
-  /* 하단 로고 */
-  .footer{
-    text-align:center;padding:2rem 0 1rem;
+  /* 푸터 영역 - 이미지 2번의 회사 소개 및 내부 가이드 스타일 구현 */
+  .footer {
+    background: #eef0f6;
+    border-radius: var(--r-md) var(--r-md) 0 0;
+    padding: 30px 20px;
+    text-align: center;
+    margin: 0 -20px -20px -20px;
+    border-top: 1px solid #d8dee9;
   }
-  .footer-logo{
-    display:inline-flex;align-items:center;gap:8px;
-    opacity:0.5;
+  .footer-notice {
+    font-size: 11px; color: #727685; line-height: 1.8; margin-bottom: 22px; max-width: 600px; margin-left: auto; margin-right: auto;
   }
-  .footer-mark{
-    width:24px;height:24px;
-    background:linear-gradient(135deg,var(--green),var(--navy));
-    border-radius:6px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:7px;font-weight:800;color:#fff;
+  .footer-logo-zone {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
   }
-  .footer-name{font-size:11px;font-weight:600;color:var(--navy);}
-  .footer-copy{font-size:10px;color:var(--subtle);margin-top:6px;}
+  /* 추가된 하단 로고 이미지 스타일 */
+  .footer-logo-img {
+    height: 32px;
+    width: auto;
+    display: block;
+    margin: 0 auto 6px;
+  }
+  
+  .footer-company-name { font-size: 12.5px; font-weight: 700; color: #4d5366; }
+  .footer-meta-info {
+    font-size: 10px; color: #9da3b4; font-weight: 600; letter-spacing: 0.5px; margin-top: 4px;
+  }
 
-  @media(max-width:640px){
-    .hero-body{grid-template-columns:1fr;}
-    .hero-dash{border-top:1px solid rgba(23,27,113,0.08);}
-    .cards-grid{grid-template-columns:1fr;}
-    .sp-body{grid-template-columns:1fr;}
+  @media(max-width: 768px) {
+    .hero-body { grid-template-columns: 1fr; }
+    .hero-dash { border-left: none; border-top: 1px solid #eeeeee; padding-left: 0; padding-top: 18px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .empty { grid-column: span 1; }
   }
 </style>
 </head>
 <body>
 <div class="page-outer">
 
-  <!-- 상단 로고 바 -->
   <div class="top-bar">
     <div class="top-logo">
-      <div class="logo-mark">ARL</div>
+      <img src="logo_top.png" alt="Arlico Pharm">
     </div>
-    <div class="top-right">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="9" stroke="#009245" stroke-width="1.5"/>
-        <path d="M3 12h18M12 3c-2.5 3-4 5.7-4 9s1.5 6 4 9M12 3c2.5 3 4 5.7 4 9s-1.5 6-4 9" stroke="#009245" stroke-width="1.5"/>
+    <div class="top-right-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 10.5C4.5 7.46 6.96 5 10.5 5C14.04 5 16.5 7.46 16.5 10.5V13.5C16.5 16.54 14.04 19 10.5 19C6.96 19 4.5 16.54 4.5 13.5V10.5Z" stroke="#1c50a3" stroke-width="2"/>
+        <path d="M12 9V15M9 12H15" stroke="#009245" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </div>
   </div>
 
-  <!-- 타이틀 -->
-  <div class="title-banner">
+  <div class="title-container">
     <h1>Arlico Newsletter</h1>
   </div>
 
-  <!-- 히어로 -->
-  <div class="hero-section">
-    <div class="hero-subbar">
-      <span class="subbar-left">CSO · ETC Intelligence Brief</span>
-      <select class="issue-select" id="issue-select" onchange="setIssue(this.value)"></select>
-    </div>
+  <div class="info-subbar">
+    <span class="subbar-title">CSO · ETC Intelligence Brief</span>
+    <select class="issue-select" id="issue-select" onchange="setIssue(this.value)"></select>
+  </div>
+
+  <div class="hero-card">
     <div class="hero-body" id="hero-block"></div>
   </div>
 
-  <!-- 이번 주 주목 -->
-  <div class="news-label">
-    <span class="news-label-text">이번 주 주목</span>
-    <div class="news-label-line"></div>
+  <div class="section-title-container">
+    <span class="section-title" id="cards-label-text">전체 이슈</span>
+    <div class="section-line"></div>
   </div>
-  <div class="spotlight" id="spotlight-block" onclick="spotlightClick()"></div>
-
-  <!-- 전체 뉴스 -->
-  <div class="news-label">
-    <span class="news-label-text" id="cards-label-text">전체 이슈</span>
-    <div class="news-label-line"></div>
-  </div>
+  
   <div class="cards-grid" id="cards-grid"></div>
 
-  <!-- 푸터 -->
   <footer class="footer">
-    <div class="footer-logo">
-      <div class="footer-mark">ARL</div>
-      <span class="footer-name">알리코제약(주)</span>
+    <p class="footer-notice">
+      출처 링크를 클릭하시면 원문 기사 및 공식 고시를 확인할 수 있습니다.<br>
+      본 뉴스레터는 알리코제약(주) CSO·ETC 영업 팀 내부 참고용으로 제작되었습니다. 무단 배포를 금합니다.
+    </p>
+    <div class="footer-logo-zone">
+      <img src="logo_bottom.png" alt="알리코제약 로고" class="footer-logo-img">
+      <div class="footer-company-name">알리코제약(주)</div>
+      <div class="footer-meta-info">ARLICO PHARM CO., LTD. · WEEKLY INTELLIGENCE BRIEF</div>
     </div>
-    <div class="footer-copy">CSO·ETC 영업팀 내부 참고용 · 무단 배포 금지</div>
   </footer>
 
 </div>
 
 <script>
-let ci=0,cf='all',oi=-1;
-const BM={impact:{label:'직접 영향',bc:'bi',type:'impact'},watch:{label:'주의 모니터링',bc:'bw',type:'watch'},ref:{label:'참고',bc:'br',type:'ref'}};
-const TYPES=['all','impact','watch','ref'];
-const LABELS={all:'전체 이슈',impact:'직접 영향',watch:'주의 모니터링',ref:'참고'};
-const DCLS={all:'d-all',impact:'d-impact',watch:'d-watch',ref:'d-ref'};
+let ci = 0, cf = 'all', oi = -1;
+const BM = {
+  impact: { label: '직접 영향', type: 'impact' },
+  watch: { label: '주의 모니터링', type: 'watch' },
+  ref: { label: '참고', type: 'ref' }
+};
+const TYPES = ['all', 'impact', 'watch', 'ref'];
+const LABELS = { all: '전체 이슈', impact: '직접 영향', watch: '주의 모니터링', ref: '참고' };
 
-function issue(){return ISSUES[ci];}
+function issue() { return ISSUES[ci]; }
 
-function buildSelect(){
-  document.getElementById('issue-select').innerHTML=
-    ISSUES.map((iss,i)=>`<option value="${i}"${i===ci?' selected':''}>${iss.week} (${iss.weekRange})</option>`).join('');
+function buildSelect() {
+  document.getElementById('issue-select').innerHTML =
+    ISSUES.map((iss, i) => `<option value="${i}"${i === ci ? ' selected' : ''}>${iss.week} (${iss.weekRange})</option>`).join('');
 }
 
-function renderHero(){
-  const iss=issue(),arts=iss.articles;
-  const counts={all:arts.length,impact:arts.filter(a=>a.type==='impact').length,watch:arts.filter(a=>a.type==='watch').length,ref:arts.filter(a=>a.type==='ref').length};
-  document.getElementById('hero-block').innerHTML=`
+function renderHero() {
+  const iss = issue(), arts = iss.articles;
+  const counts = {
+    all: arts.length,
+    impact: arts.filter(a => a.type === 'impact').length,
+    watch: arts.filter(a => a.type === 'watch').length,
+    ref: arts.filter(a => a.type === 'ref').length
+  };
+  
+  // 막대 그래프 가득 참 비율 계산용 기준값
+  const maxCount = Math.max(counts.all, 1);
+
+  document.getElementById('hero-block').innerHTML = `
     <div class="hero-main">
       <div class="hero-eyebrow">
-        <span class="eyebrow-badge"><span class="eyebrow-dot"></span>Weekly Pharma Brief</span>
-        <span class="eyebrow-year">2026</span>
+        <span class="eyebrow-dot"></span>
+        <span>WEEKLY PHARMA BRIEF</span>
+        <span class="eyebrow-date">${iss.weekRange}</span>
       </div>
       <div class="hero-title">${iss.heroTitle}</div>
       <div class="hero-sub">${iss.heroSub}</div>
       <div class="hero-tags">
-        <span class="htag">● ${iss.weekRange}</span>
-        ${iss.tags.map(t=>`<span class="htag">${t}</span>`).join('')}
+        ${iss.tags.map(t => `<span class="htag">${t}</span>`).join('')}
       </div>
     </div>
     <div class="hero-dash">
       <div class="dash-label">이슈 현황</div>
-      ${TYPES.map(type=>`
-        <div class="dash-row${cf===type?' active':''}" data-type="${type}" onclick="setFilter('${type}')">
+      ${TYPES.map(type => {
+        const pct = (counts[type] / maxCount) * 100;
+        return `
+        <div class="dash-row${cf === type ? ' active' : ''}" data-type="${type}" onclick="setFilter('${type}')">
           <div class="dash-row-left">
-            <span class="d-dot ${DCLS[type]}"></span>
-            <span class="d-name">${LABELS[type]}</span>
+            <span class="d-dot d-${type}"></span>
+            <span>${LABELS[type]}</span>
           </div>
-          <span class="d-count">${counts[type]}</span>
-        </div>`).join('')}
+          <div class="dash-row-right">
+            <span class="d-count">${counts[type]}</span>
+            <div class="d-bar-container">
+              <div class="d-bar" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
     </div>`;
 }
 
-function renderSpotlight(){
-  const iss=issue(),top=iss.articles.find(a=>a.type==='impact')||iss.articles[0];
-  const m=BM[top.type];
-  document.getElementById('spotlight-block').innerHTML=`
-    <div class="sp-accent"></div>
-    <div class="sp-body">
-      <div>
-        <div class="sp-badge">◆ ${m.label}</div>
-        <div class="sp-title">${top.title}</div>
-        <div class="sp-text">${top.detail}</div>
-        <div class="sp-src">출처: ${top.source} · ${top.date}</div>
-      </div>
-      <div class="sp-cso">
-        <div class="sp-cso-label">CSO 영업 영향</div>
-        <div class="sp-cso-text">${top.cso}</div>
-      </div>
-    </div>`;
-  document.getElementById('spotlight-block').dataset.idx=iss.articles.indexOf(top);
-}
-
-function spotlightClick(){
-  const idx=parseInt(document.getElementById('spotlight-block').dataset.idx);
-  cf='all';oi=(oi===idx?-1:idx);renderCards();
-  setTimeout(()=>{const c=document.querySelector('.card.is-open');if(c)c.scrollIntoView({behavior:'smooth',block:'nearest'});},60);
-}
-
-function renderCards(){
-  const arts=cf==='all'?issue().articles:issue().articles.filter(a=>a.type===cf);
-  document.getElementById('cards-label-text').textContent=LABELS[cf];
-  if(!arts.length){document.getElementById('cards-grid').innerHTML='<div class="empty">해당 분류의 이슈가 없습니다.</div>';syncDash();return;}
-  document.getElementById('cards-grid').innerHTML=arts.map(art=>{
-    const ri=issue().articles.indexOf(art),m=BM[art.type],open=oi===ri;
-    return `<div class="card ${art.type}${open?' is-open':''}" onclick="toggleCard(${ri})">
+function renderCards() {
+  const arts = cf === 'all' ? issue().articles : issue().articles.filter(a => a.type === cf);
+  document.getElementById('cards-label-text').textContent = LABELS[cf];
+  
+  if (!arts.length) {
+    document.getElementById('cards-grid').innerHTML = '<div class="empty">해당 분류의 이슈가 없습니다.</div>';
+    syncDash();
+    return;
+  }
+  
+  document.getElementById('cards-grid').innerHTML = arts.map(art => {
+    const ri = issue().articles.indexOf(art), m = BM[art.type], open = oi === ri;
+    return `
+    <div class="card ${art.type}${open ? ' is-open' : ''}" onclick="toggleCard(${ri}, event)">
       <div class="card-top-bar">
-        <div class="card-badges"><span class="badge ${m.bc}">${m.label}</span><span class="card-cat">${art.category}</span></div>
+        <div class="card-badges">
+          <span class="badge">${m.label}</span>
+          <span class="card-cat">${art.category}</span>
+        </div>
         <span class="card-date">${art.date}</span>
       </div>
       <div class="card-inner">
@@ -460,24 +444,47 @@ function renderCards(){
       </div>
       <div class="card-footer">
         <span class="card-src">출처: ${art.source}</span>
-        <span class="card-toggle">${open?'▲ 접기':'▼ 상세보기'}</span>
+        <span class="card-toggle">${open ? '▲ 접기' : '▼ 상세보기'}</span>
       </div>
-      <div class="drawer${open?' open':''}">
+      <div class="drawer${open ? ' open' : ''}" onclick="event.stopPropagation()">
         <p class="drawer-detail">${art.detail}</p>
-        <div class="drawer-cso"><div class="drawer-cso-label">CSO 영업 영향</div><p class="drawer-cso-text">${art.cso}</p></div>
-        <div class="drawer-foot"><span class="drawer-meta">출처: ${art.source} · ${art.date}</span><a class="src-link" href="${art.sourceUrl}" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+        <div class="drawer-cso">
+          <div class="drawer-cso-label">CSO 영업 영향</div>
+          <p class="drawer-cso-text">${art.cso}</p>
+        </div>
+        <div class="drawer-foot">
+          <span class="drawer-meta">출처: ${art.source} · ${art.date}</span>
+          <a class="src-link" href="${art.sourceUrl}" target="_blank" rel="noopener">원문 보기 ↗</a>
+        </div>
       </div>
     </div>`;
   }).join('');
   syncDash();
 }
 
-function syncDash(){document.querySelectorAll('.dash-row').forEach(el=>el.classList.toggle('active',el.dataset.type===cf));}
-function toggleCard(idx){oi=oi===idx?-1:idx;renderCards();}
-function setFilter(type){cf=type;oi=-1;renderHero();renderCards();}
-function setIssue(val){ci=parseInt(val);cf='all';oi=-1;buildSelect();renderHero();renderSpotlight();renderCards();}
+function syncDash() {
+  document.querySelectorAll('.dash-row').forEach(el => el.classList.toggle('active', el.dataset.type === cf));
+}
 
-buildSelect();renderHero();renderSpotlight();renderCards();
+function toggleCard(idx, event) {
+  // 내부 상세 영역이나 링크 클릭 시 부모 카드가 오작동으로 접히는 현상 방지
+  if(event.target.tagName === 'A' || event.target.closest('.src-link')) return;
+  oi = oi === idx ? -1 : idx;
+  renderCards();
+}
+
+function setFilter(type) {
+  cf = type; oi = -1;
+  renderCards();
+}
+
+function setIssue(val) {
+  ci = parseInt(val); cf = 'all'; oi = -1;
+  buildSelect(); renderHero(); renderCards();
+}
+
+// 초기 로딩 진입점
+buildSelect(); renderHero(); renderCards();
 </script>
 </body>
 </html>
