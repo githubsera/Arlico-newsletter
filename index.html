@@ -4,799 +4,676 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arlico Pharm Weekly Intelligence Brief</title>
+<script src="data.js"></script>
 <style>
   :root {
-    --green-50: #E1F5EE;
-    --green-100: #9FE1CB;
-    --green-200: #5DCAA5;
-    --green-500: #1D9E75;
-    --green-600: #0F6E56;
-    --green-700: #085041;
-    --green-800: #04342C;
-    --amber-50: #FAEEDA;
-    --amber-200: #EF9F27;
-    --amber-600: #854F0B;
-    --blue-50: #E6F1FB;
-    --blue-200: #85B7EB;
-    --blue-600: #185FA5;
-    --gray-50: #F7F7F5;
-    --gray-100: #EEEDE9;
-    --gray-200: #D3D1C7;
-    --gray-400: #888780;
-    --gray-600: #5F5E5A;
-    --gray-800: #2C2C2A;
-    --text-primary: #1a1a18;
-    --text-secondary: #5F5E5A;
-    --text-muted: #888780;
-    --border: rgba(0,0,0,0.1);
-    --border-md: rgba(0,0,0,0.15);
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
-    background: var(--gray-50);
-    color: var(--text-primary);
-    font-size: 15px;
-    line-height: 1.6;
-    min-height: 100vh;
+    --g50:  #E8F7F1;
+    --g100: #C0EADA;
+    --g300: #5DCAA5;
+    --g500: #1D9E75;
+    --g600: #0F6E56;
+    --g700: #085041;
+    --g800: #04342C;
+    --g900: #021F1A;
+    --am50:  #FEF3E2;
+    --am300: #F5B942;
+    --am600: #8B5200;
+    --bl50:  #EAF2FD;
+    --bl300: #7BB8F0;
+    --bl600: #1A5CA3;
+    --sl50:  #F0EDF8;
+    --sl300: #A090D8;
+    --sl600: #4B3A9E;
+    --n0:   #FFFFFF;
+    --n50:  #F6F6F4;
+    --n100: #EDECE9;
+    --n200: #D8D6D0;
+    --n400: #999790;
+    --n600: #5A5955;
+    --n800: #26251F;
+    --n900: #111110;
+    --text: #111110;
+    --muted: #5A5955;
+    --subtle: #999790;
+    --border: rgba(0,0,0,0.09);
+    --r-sm: 6px;
+    --r-md: 10px;
+    --r-lg: 16px;
+    --r-xl: 22px;
   }
 
-  /* ── TOPBAR ── */
-  .topbar {
-    background: var(--green-800);
-    padding: 0 2rem;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Apple SD Gothic Neo','Noto Sans KR',-apple-system,sans-serif;
+    background: var(--n50);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    background: var(--n0);
+    border-bottom: 1px solid var(--border);
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 52px;
+    padding: 0 2rem;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 200;
   }
-  .topbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
+  .nav-logo { display: flex; align-items: center; gap: 9px; }
+  .nav-mark {
+    width: 26px; height: 26px;
+    background: var(--g500);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 800; color: #fff; letter-spacing: -0.5px;
   }
-  .brand-mark {
-    width: 28px;
-    height: 28px;
-    background: var(--green-500);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -0.3px;
-  }
-  .brand-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.2px;
-  }
-  .brand-sub {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    margin-left: 6px;
-    font-weight: 400;
-  }
-  .topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .topbar-tag {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    padding: 3px 8px;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 100px;
+  .nav-title { font-size: 13px; font-weight: 700; color: var(--n900); }
+  .nav-divider { width: 1px; height: 14px; background: var(--n200); margin: 0 8px; }
+  .nav-sub { font-size: 11px; color: var(--subtle); }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+  .issue-select {
+    font-size: 12px;
+    border: 1px solid var(--n200);
+    border-radius: var(--r-md);
+    background: var(--n50);
+    color: var(--text);
+    padding: 5px 28px 5px 10px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999790' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 9px center;
   }
 
-  /* ── LAYOUT ── */
-  .page {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .layout {
+  /* ─── WRAP ─── */
+  .page { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ─── HERO ─── */
+  .hero {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem 0 4rem;
-    align-items: start;
-  }
-
-  /* ── SIDEBAR ── */
-  .sidebar {
-    position: sticky;
-    top: 68px;
-  }
-  .sidebar-section {
-    background: #fff;
+    grid-template-columns: 1fr 300px;
+    gap: 0;
+    margin: 1.5rem 0 0;
+    background: var(--n0);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--r-xl);
     overflow: hidden;
-    margin-bottom: 10px;
+    min-height: 240px;
   }
-  .sidebar-title {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    padding: 12px 14px 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .issue-item {
+  .hero-left {
+    padding: 2rem 2rem 1.75rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 10px 14px;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.1s;
-    text-decoration: none;
-    color: inherit;
+    border-right: 1px solid var(--border);
   }
-  .issue-item:last-child { border-bottom: none; }
-  .issue-item:hover { background: var(--gray-50); }
-  .issue-item.active { background: var(--green-50); }
-  .issue-item-inner { flex: 1; }
-  .issue-item-week {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--green-600);
-    margin-bottom: 2px;
-  }
-  .issue-item.active .issue-item-week { color: var(--green-700); }
-  .issue-item-date { font-size: 11px; color: var(--text-muted); }
-  .issue-count {
-    font-size: 11px;
-    background: var(--gray-100);
-    color: var(--text-muted);
-    border-radius: 100px;
-    padding: 2px 7px;
-    flex-shrink: 0;
-  }
-  .issue-item.active .issue-count {
-    background: var(--green-100);
-    color: var(--green-700);
-  }
-
-  .filter-btn {
+  .hero-eyebrow {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 9px 14px;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--text-secondary);
-    transition: background 0.1s;
-  }
-  .filter-btn:last-child { border-bottom: none; }
-  .filter-btn:hover { background: var(--gray-50); }
-  .filter-btn.active { color: var(--text-primary); font-weight: 500; }
-  .filter-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dot-all { background: var(--gray-400); }
-  .dot-impact { background: var(--green-500); }
-  .dot-watch { background: var(--amber-200); }
-  .dot-ref { background: var(--blue-200); }
-  .filter-count {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-
-  /* ── MAIN ── */
-  .main-header {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .issue-week-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--green-600);
-    background: var(--green-50);
-    border: 1px solid var(--green-100);
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-bottom: 10px;
-  }
-  .main-header h1 {
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.4;
-    margin-bottom: 6px;
-  }
-  .main-header-sub {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.6;
     margin-bottom: 14px;
   }
-  .header-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .header-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag {
-    font-size: 11px;
-    padding: 3px 8px;
-    border-radius: 100px;
-    background: var(--gray-100);
-    color: var(--gray-600);
-    border: 1px solid var(--border);
-  }
-  .header-stats { display: flex; gap: 8px; }
-  .stat-pill {
-    text-align: center;
-    padding: 6px 14px;
-    background: var(--gray-50);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    min-width: 64px;
-  }
-  .stat-n {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1;
-  }
-  .stat-l { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
-
-  /* ── CARDS ── */
-  .cards-grid {
-    display: grid;
-    gap: 8px;
-  }
-  .card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1rem 1.25rem;
-    cursor: pointer;
-    transition: box-shadow 0.15s, border-color 0.15s;
-    border-left-width: 3px;
-    position: relative;
-  }
-  .card:hover { border-color: var(--border-md); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-  .card.impact { border-left-color: var(--green-500); }
-  .card.watch  { border-left-color: var(--amber-200); }
-  .card.ref    { border-left-color: var(--blue-200); }
-  .card.active { border-color: var(--border-md); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-
-  .card-top {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 7px;
-  }
-  .badge {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 100px;
-  }
-  .badge-impact { background: var(--green-50); color: var(--green-600); border: 1px solid var(--green-100); }
-  .badge-watch  { background: var(--amber-50); color: var(--amber-600); border: 1px solid #FAC775; }
-  .badge-ref    { background: var(--blue-50);  color: var(--blue-600);  border: 1px solid var(--blue-200); }
-  .card-cat { font-size: 11px; color: var(--text-muted); }
-  .card-date { font-size: 11px; color: var(--text-muted); margin-left: auto; }
-  .card h2 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.45;
-    margin-bottom: 5px;
-  }
-  .card-summary {
-    font-size: 12.5px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-  .card-footer {
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .card-src { font-size: 11px; color: var(--text-muted); }
-  .card-arrow {
-    font-size: 12px;
-    color: var(--text-muted);
-    transition: transform 0.15s;
-  }
-  .card:hover .card-arrow { transform: translateX(2px); }
-
-  /* ── DETAIL DRAWER ── */
-  .detail-drawer {
-    background: #fff;
-    border: 1px solid var(--border-md);
-    border-radius: var(--radius-lg);
-    margin-top: 8px;
-    overflow: hidden;
-    display: none;
-  }
-  .detail-drawer.open { display: block; }
-  .drawer-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .drawer-header-left { flex: 1; }
-  .drawer-badges { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
-  .drawer-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.4;
-  }
-  .drawer-close {
-    background: var(--gray-100);
-    border: none;
-    width: 28px;
-    height: 28px;
+  .eyebrow-dot {
+    width: 7px; height: 7px;
     border-radius: 50%;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--text-secondary);
+    background: var(--g500);
+    flex-shrink: 0;
+  }
+  .eyebrow-text {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--g600);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .eyebrow-week {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--subtle);
+    padding: 2px 8px;
+    background: var(--n100);
+    border-radius: 100px;
+  }
+  .hero-title {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--n900);
+    letter-spacing: -0.5px;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .hero-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .htag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--g50);
+    color: var(--g600);
+    border: 1px solid var(--g100);
+    font-weight: 500;
+  }
+
+  /* ─── DASHBOARD PANEL ─── */
+  .hero-right {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--n50);
+  }
+  .dash-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--subtle);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .dash-row {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .dash-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border);
+    background: var(--n0);
+    cursor: pointer;
+    transition: border-color 0.13s, box-shadow 0.13s;
+  }
+  .dash-item:hover { border-color: var(--n200); box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .dash-item.active { border-color: currentColor; }
+  .dash-item-left { display: flex; align-items: center; gap: 9px; }
+  .dash-color {
+    width: 10px; height: 10px;
+    border-radius: 3px;
     flex-shrink: 0;
+  }
+  .dc-all    { background: var(--n400); }
+  .dc-impact { background: var(--g500); }
+  .dc-watch  { background: var(--am300); }
+  .dc-ref    { background: var(--bl300); }
+  .dash-name { font-size: 12px; color: var(--text); font-weight: 500; }
+  .dash-right { display: flex; align-items: center; gap: 8px; }
+  .dash-count {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--n900);
     line-height: 1;
   }
-  .drawer-close:hover { background: var(--gray-200); }
-  .drawer-body { padding: 1rem 1.25rem; }
-  .drawer-section { margin-bottom: 1rem; }
-  .drawer-section:last-child { margin-bottom: 0; }
-  .drawer-section-title {
+  .dash-bar-wrap {
+    width: 48px; height: 4px;
+    background: var(--n100);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .dash-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  .dash-item[data-type="all"]    .dash-bar { background: var(--n400); }
+  .dash-item[data-type="impact"] .dash-bar { background: var(--g500); }
+  .dash-item[data-type="watch"]  .dash-bar { background: var(--am300); }
+  .dash-item[data-type="ref"]    .dash-bar { background: var(--bl300); }
+
+  /* ─── SPOTLIGHT ─── */
+  .spotlight-label {
     font-size: 10px;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--subtle);
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
-    margin-bottom: 6px;
+    margin: 1.5rem 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .drawer-text {
-    font-size: 13.5px;
-    color: var(--text-primary);
-    line-height: 1.75;
+  .spotlight-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
   }
-  .cso-block {
-    background: var(--green-50);
-    border: 1px solid var(--green-100);
-    border-radius: var(--radius-md);
-    padding: 12px 14px;
+  .spotlight {
+    background: var(--n0);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 4px 1fr;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.15s;
+    cursor: pointer;
   }
-  .cso-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--green-600);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
+  .spotlight:hover { box-shadow: 0 2px 14px rgba(0,0,0,0.07); }
+  .spotlight-accent { background: var(--g500); }
+  .spotlight-body {
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.25rem;
+    align-items: start;
   }
-  .cso-text {
-    font-size: 13px;
-    color: var(--green-700);
-    line-height: 1.7;
-  }
-  .source-link {
+  .sp-badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 12px;
-    color: var(--blue-600);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--g600);
+    background: var(--g50);
+    border: 1px solid var(--g100);
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+  .sp-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--n900);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .sp-text { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+  .sp-cso {
+    min-width: 240px;
+    max-width: 280px;
+    background: var(--g50);
+    border: 1px solid var(--g100);
+    border-radius: var(--r-md);
+    padding: 12px 14px;
+  }
+  .sp-cso-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--g600);
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sp-cso-text { font-size: 12px; color: var(--g700); line-height: 1.65; }
+  .sp-src { font-size: 11px; color: var(--subtle); margin-top: 10px; }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--subtle);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ─── CARDS GRID ─── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-bottom: 4rem;
+  }
+
+  .card {
+    background: var(--n0);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.15s, border-color 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover { box-shadow: 0 2px 14px rgba(0,0,0,0.07); border-color: var(--n200); }
+
+  .card-stripe { height: 3px; }
+  .stripe-impact { background: var(--g500); }
+  .stripe-watch  { background: var(--am300); }
+  .stripe-ref    { background: var(--bl300); }
+
+  .card-inner { padding: 1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
+  .card-top { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; }
+
+  .badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .badge-impact { background: var(--g50);  color: var(--g600);  border: 1px solid var(--g100); }
+  .badge-watch  { background: var(--am50); color: var(--am600); border: 1px solid #FDDDA0; }
+  .badge-ref    { background: var(--bl50); color: var(--bl600); border: 1px solid var(--bl300); }
+
+  .card-cat { font-size: 10px; color: var(--subtle); }
+  .card-date { font-size: 10px; color: var(--subtle); margin-left: auto; }
+
+  .card h3 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--n900);
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .card-summary { font-size: 12px; color: var(--muted); line-height: 1.65; flex: 1; }
+
+  .card-footer {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-src { font-size: 10px; color: var(--subtle); }
+  .card-toggle { font-size: 10px; color: var(--subtle); }
+
+  /* ─── DRAWER ─── */
+  .drawer {
+    background: var(--n50);
+    border-top: 1px solid var(--border);
+    padding: 1rem 1.1rem;
+    display: none;
+  }
+  .drawer.open { display: block; }
+  .drawer-detail { font-size: 12.5px; color: var(--text); line-height: 1.75; margin-bottom: 10px; }
+  .drawer-cso {
+    background: var(--g50);
+    border: 1px solid var(--g100);
+    border-radius: var(--r-md);
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+  .drawer-cso-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--g600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+  }
+  .drawer-cso-text { font-size: 12px; color: var(--g700); line-height: 1.65; }
+  .drawer-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .drawer-meta { font-size: 10px; color: var(--subtle); }
+  .src-link {
+    font-size: 11px;
+    color: var(--bl600);
     text-decoration: none;
-    padding: 5px 10px;
-    background: var(--blue-50);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--blue-200);
-    margin-top: 4px;
+    padding: 4px 9px;
+    background: var(--bl50);
+    border-radius: var(--r-sm);
+    border: 1px solid var(--bl300);
   }
-  .source-link:hover { opacity: 0.8; }
+  .src-link:hover { opacity: 0.75; }
 
-  /* ── EMPTY STATE ── */
-  .empty {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-muted);
-    font-size: 13px;
-  }
+  /* ─── EMPTY ─── */
+  .empty { grid-column: span 2; text-align: center; padding: 3rem; color: var(--subtle); font-size: 13px; }
 
-  /* ── FOOTER ── */
+  /* ─── FOOTER ─── */
   .footer {
     border-top: 1px solid var(--border);
-    padding: 1.5rem 0;
+    background: var(--n0);
     text-align: center;
+    padding: 1.25rem;
     font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 2rem;
+    color: var(--subtle);
   }
 
-  @media (max-width: 700px) {
-    .layout { grid-template-columns: 1fr; }
-    .sidebar { position: static; }
-    .topbar { padding: 0 1rem; }
-    .brand-sub { display: none; }
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { border-top: 1px solid var(--border); }
+    .cards-grid { grid-template-columns: 1fr; }
+    .spotlight-body { grid-template-columns: 1fr; }
+    .sp-cso { min-width: unset; max-width: unset; }
+    .nav { padding: 0 1rem; }
+    .nav-sub, .nav-divider { display: none; }
   }
 </style>
 </head>
 <body>
 
-<nav class="topbar">
-  <div class="topbar-brand">
-    <div class="brand-mark">ARL</div>
-    <span class="brand-name">Arlico Pharm Weekly</span>
-    <span class="brand-sub">CSO · ETC Intelligence Brief</span>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-mark">ARL</div>
+    <span class="nav-title">Arlico Pharm Weekly</span>
+    <div class="nav-divider"></div>
+    <span class="nav-sub">CSO · ETC Intelligence Brief</span>
   </div>
-  <div class="topbar-right">
-    <span class="topbar-tag">내부 참고용</span>
+  <div class="nav-right">
+    <select class="issue-select" id="issue-select" onchange="setIssue(this.value)"></select>
   </div>
 </nav>
 
 <div class="page">
-  <div class="layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-title">이슈 분류</div>
-        <div class="filter-btn active" onclick="setFilter('all', this)">
-          <span class="filter-dot dot-all"></span>전체 보기
-          <span class="filter-count" id="fc-all"></span>
-        </div>
-        <div class="filter-btn" onclick="setFilter('impact', this)">
-          <span class="filter-dot dot-impact"></span>직접 영향
-          <span class="filter-count" id="fc-impact"></span>
-        </div>
-        <div class="filter-btn" onclick="setFilter('watch', this)">
-          <span class="filter-dot dot-watch"></span>주의 모니터링
-          <span class="filter-count" id="fc-watch"></span>
-        </div>
-        <div class="filter-btn" onclick="setFilter('ref', this)">
-          <span class="filter-dot dot-ref"></span>참고
-          <span class="filter-count" id="fc-ref"></span>
-        </div>
-      </div>
-
-      <div class="sidebar-section" id="issue-list">
-        <div class="sidebar-title">발행 목록</div>
-        <!-- JS가 렌더링 -->
-      </div>
-    </aside>
-
-    <!-- MAIN -->
-    <main>
-      <div class="main-header" id="main-header">
-        <!-- JS가 렌더링 -->
-      </div>
-      <div class="cards-grid" id="cards-container">
-        <!-- JS가 렌더링 -->
-      </div>
-    </main>
-
+  <!-- HERO -->
+  <div class="hero" id="hero-block">
+    <!-- JS render -->
   </div>
+
+  <!-- SPOTLIGHT -->
+  <div class="spotlight-label">이번 주 주목 이슈</div>
+  <div class="spotlight" id="spotlight-block" onclick="spotlightClick()">
+    <!-- JS render -->
+  </div>
+
+  <!-- CARDS -->
+  <div class="section-label" id="cards-label">전체 이슈</div>
+  <div class="cards-grid" id="cards-grid">
+    <!-- JS render -->
+  </div>
+
 </div>
 
 <footer class="footer">
-  <div class="page">
-    알리코제약(주) · CSO·ETC 영업팀 내부 참고용 · 무단 배포 금지
-  </div>
+  알리코제약(주) · CSO·ETC 영업팀 내부 참고용 · 무단 배포 금지
 </footer>
 
 <script>
-/* ============================================================
-   📋 데이터 관리 영역
-   매주 아래 ISSUES 배열에 새 이슈 객체를 추가하세요.
-   
-   각 이슈 객체 구조:
-   {
-     id: "고유ID (주차-번호)",
-     week: "주차 라벨",
-     weekRange: "날짜 범위",
-     publishedAt: "YYYY-MM-DD",
-     heroTitle: "이슈 헤드라인",
-     heroSub: "부제 (1~2줄)",
-     tags: ["#태그1", "#태그2"],
-     articles: [
-       {
-         type: "impact | watch | ref",
-         category: "카테고리명",
-         title: "기사 제목",
-         summary: "카드 요약 (2~3줄)",
-         detail: "상세 본문",
-         cso: "CSO 영업 영향",
-         source: "출처명",
-         sourceUrl: "기사 URL",
-         date: "발행일"
-       }
-     ]
-   }
-   ============================================================ */
+/* ── 상태 ── */
+let ci = 0;       // current issue index
+let cf = 'all';   // current filter
+let oi = -1;      // open card index
 
-const ISSUES = [
-  {
-    id: "2026-w24",
-    week: "2026년 6월 2주차",
-    weekRange: "6/8 ~ 6/14",
-    publishedAt: "2026-06-14",
-    heroTitle: "심평원 RWE 성과평가 가이드라인 제정…급여 사후관리 본격화",
-    heroSub: "비대면진료 약 전달·편의점약 20품목 확대 추진 / 제네릭 약가 정책 재설계 논의·7월 살충제 판매 제한",
-    tags: ["#RWE성과평가", "#비대면진료약전달", "#제네릭정책재설계"],
-    articles: [
-      {
-        type: "impact",
-        category: "급여/제도",
-        title: "심평원, 약제성과평가 RWE 가이드라인 제정·공개",
-        summary: "실사용 성과 기반 급여 조정 체계가 본격화됩니다. 신속등재 신약의 사후 성과평가와 급여 범위·약가 조정을 실사용 데이터 기반으로 운영하기 위한 기준이 마련됐습니다.",
-        detail: "심사평가원이 건강보험 등재 약제의 실제 사용 성과를 체계적으로 평가하기 위한 실제임상근거(RWE) 가이드라인을 제정·공개했습니다. 이는 신속등재 신약의 사후 성과평가와 급여 범위·약가 조정을 실사용 데이터 기반으로 운영하기 위한 기준으로, 약가제도 개편의 사후관리 축을 구체화하는 조치입니다.",
-        cso: "RWE 기반 성과평가가 본격화되면 위탁 품목의 급여 유지·약가가 실사용 성과 데이터에 좌우됩니다. 특히 신속등재 신약은 사후 성과 미달 시 약가인하 리스크가 있어 처방 성과·복약 데이터 관리가 중요해집니다.",
-        source: "약사공론",
-        sourceUrl: "https://www.kpanews.co.kr/",
-        date: "2026.06.11"
-      },
-      {
-        type: "impact",
-        category: "CSO 연관 정책",
-        title: "비대면진료 약 전달·편의점약 20품목 확대 착수",
-        summary: "정부가 하반기 필수의료 과제로 편의점 안전상비의약품을 11품목에서 20품목으로 확대 추진합니다. 약 전달 채널에 구조적 변화가 예상됩니다.",
-        detail: "정부가 비대면진료 약사 서비스와 의약품 전달(배송), 안전상비의약품(편의점약)을 현재 11품목에서 20품목으로 확대 추진합니다. 복지부는 2026년 하반기 중점 추진과제에서 약 전달과 편의점약 확대를 '생명을 살리는 필수의료'로 분류해 정책 의지를 명확히 했습니다.",
-        cso: "비대면진료 약 전달 확대는 처방 의약품의 유통·전달 경로에 구조적 변화를 가져옵니다. 편의점약 20품목 확대는 일반약 채널 분산으로 약국 OTC 매출에 영향을 줄 수 있어 위탁 품목의 채널 전략을 재점검해야 합니다.",
-        source: "약사공론",
-        sourceUrl: "https://www.kpanews.co.kr/",
-        date: "2026.06.14"
-      },
-      {
-        type: "watch",
-        category: "약가/제도",
-        title: "제네릭 정책 재설계 제기 — 사용 촉진·품질관리까지",
-        summary: "한국사회약학회 학술대회에서 제네릭 약가제도 국제 비교 연구가 발표됐습니다. '약가관리만으론 안 된다'는 진단과 함께 정책 재설계가 제기됐습니다.",
-        detail: "6/12 한국사회약학회 전기학술대회 세션1에서 제네릭 약가제도 국제 비교 연구가 발표됐습니다. 박실비아 보건사회연구원 연구위원은 일본·프랑스·독일·영국·캐나다 등 주요국이 제네릭 등재 후 지속 가격 인하와 총약품비 관리로 재정 효율화를 유도한다고 분석하며 한국은 '가격은 높고 시장은 크다'고 진단했습니다.",
-        cso: "제네릭 정책이 단순 약가 인하를 넘어 사용 촉진·품질관리·산업 경쟁력으로 재설계되면 CSO 위탁 제네릭의 경쟁 구도가 품질·신뢰 중심으로 이동합니다. 7월 약가인하·8월 약가개편과 맞물린 제도 변화를 주시해야 합니다.",
-        source: "약사공론",
-        sourceUrl: "https://www.kpanews.co.kr/",
-        date: "2026.06.13"
-      },
-      {
-        type: "watch",
-        category: "영업/유통",
-        title: "7월 살생물제품 승인제 전면 시행 — 약국 살충제 반품·회수 본격화",
-        summary: "7월 1일 살생물제품 승인제 전면 시행을 앞두고 약국가에서 살충제 재고 처리와 반품 혼선이 커지고 있습니다. 에프킬라 등 일부 제품 수거가 곧 시작됩니다.",
-        detail: "7월 1일 살생물제품 승인제 전면 시행을 앞두고 약국가에서 살충제 재고 처리와 반품을 둘러싼 혼선이 커지고 있습니다. 승인대상 기존살생물물질 함유 제품의 유통·판매가 6월 30일까지만 허용되며 에프킬라 등 일부 제품은 제조사 차원의 수거 절차가 이달 중 시작됩니다.",
-        cso: "약국 비의약품(살충제) 재고 반품 부담은 약국 운영비와 발주 패턴에 영향을 줍니다. 업체별 회수·반품 기준이 상이해 현장 혼선이 커 거래 약국의 재고 처리 동향을 파악하고 관련 품목 공급 일정을 점검해야 합니다.",
-        source: "약사공론",
-        sourceUrl: "https://www.kpanews.co.kr/",
-        date: "2026.06.12"
-      },
-      {
-        type: "ref",
-        category: "신약/임상",
-        title: "로슈 차세대 비만약 한국 임상3상 승인 — 노보·릴리에 도전",
-        summary: "식약처가 한국로슈의 제2형 당뇨병 동반 비만 환자 대상 후보물질 임상3상을 승인했습니다. 노보노디스크·일라이 릴리 양강 구도에 도전장을 던졌습니다.",
-        detail: "식약처가 6월 9일 한국로슈가 신청한 '제2형 당뇨병이 있는 비만 환자 대상' 차세대 비만 치료제 후보물질의 임상시험계획(임상3상)을 승인했습니다. 기존 시장을 양분한 노보노디스크(위고비)와 일라이 릴리(마운자로)의 강력한 대항마로 꼽혀 국내 대규모 임상 진입에 업계 이목이 쏠립니다.",
-        cso: "비만치료제 시장은 비급여 처방 비중이 높아 의원·병원 영업의 핵심 성장 영역입니다. 글로벌 빅파마의 신규 진입은 중장기적으로 처방 경쟁 구도를 재편하므로 비만·당뇨 영역 위탁 품목의 포지셔닝을 선제적으로 점검할 필요가 있습니다.",
-        source: "데일리팜",
-        sourceUrl: "https://www.dailypharm.com/",
-        date: "2026.06.11"
-      },
-      {
-        type: "watch",
-        category: "영업/유통",
-        title: "실버케어크림·에취투주 공급중단, 스테파론액 한 달 부족",
-        summary: "채산성 악화와 위탁제조 여건 변화로 공급중단·부족 사례가 이어지고 있습니다. 각 품목은 동일 성분·적응증 대체가 가능합니다.",
-        detail: "채산성 악화와 위탁제조 여건 변화 등으로 의약품 공급중단·부족 사례가 이어지고 있습니다. 태극제약 실버케어크림과 JW중외제약 에취투주가 공급 중단 절차에 들어갔고 동화약품 스테파론액은 6월 15일부터 약 한 달간 공급 부족이 예상됩니다.",
-        cso: "채산성 기반 공급중단은 저마진 품목의 시장 철수 흐름을 보여줍니다. 위탁 품목 중 공급중단 대상의 대체조제 수요 이동을 사전 파악하고 거래처 약국·의원의 재고 운영을 함께 점검해야 합니다.",
-        source: "약사공론",
-        sourceUrl: "https://www.kpanews.co.kr/",
-        date: "2026.06.11"
-      }
-    ]
-  }
-  /* 매주 여기에 새 이슈 추가 ↑ */
-];
-
-/* ============================================================
-   앱 로직 (수정 불필요)
-   ============================================================ */
-let currentIssueIdx = 0;
-let currentFilter   = 'all';
-let openArticleIdx  = -1;
-
-const badgeMeta = {
-  impact: { label: '직접 영향',     cls: 'badge-impact' },
-  watch:  { label: '주의 모니터링', cls: 'badge-watch'  },
-  ref:    { label: '참고',          cls: 'badge-ref'    }
+const BM = {
+  impact: { label: '직접 영향',     cls: 'badge-impact', stripe: 'stripe-impact' },
+  watch:  { label: '주의 모니터링', cls: 'badge-watch',  stripe: 'stripe-watch'  },
+  ref:    { label: '참고',           cls: 'badge-ref',    stripe: 'stripe-ref'    }
 };
 
-function getIssue() { return ISSUES[currentIssueIdx]; }
+function issue() { return ISSUES[ci]; }
 
-function filteredArticles() {
-  const issue = getIssue();
-  return currentFilter === 'all'
-    ? issue.articles
-    : issue.articles.filter(a => a.type === currentFilter);
+/* ── SELECT ── */
+function buildSelect() {
+  const sel = document.getElementById('issue-select');
+  sel.innerHTML = ISSUES.map((iss, i) =>
+    `<option value="${i}" ${i===ci?'selected':''}>${iss.week} (${iss.weekRange})</option>`
+  ).join('');
 }
 
-function renderSidebar() {
-  const list = document.getElementById('issue-list');
-  const inner = ISSUES.map((iss, i) => `
-    <a class="issue-item ${i === currentIssueIdx ? 'active' : ''}" onclick="setIssue(${i}); return false;" href="#">
-      <div class="issue-item-inner">
-        <div class="issue-item-week">${iss.week}</div>
-        <div class="issue-item-date">${iss.weekRange}</div>
+/* ── HERO ── */
+function renderHero() {
+  const iss = issue();
+  const arts = iss.articles;
+  const total   = arts.length;
+  const nImpact = arts.filter(a=>a.type==='impact').length;
+  const nWatch  = arts.filter(a=>a.type==='watch').length;
+  const nRef    = arts.filter(a=>a.type==='ref').length;
+
+  const counts = { all: total, impact: nImpact, watch: nWatch, ref: nRef };
+  const labels = { all:'전체 이슈', impact:'직접 영향', watch:'주의 모니터링', ref:'참고' };
+  const types  = ['all','impact','watch','ref'];
+
+  document.getElementById('hero-block').innerHTML = `
+    <div class="hero-left">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-text">Weekly Pharma Brief</span>
+          <span class="eyebrow-week">${iss.weekRange}</span>
+        </div>
+        <div class="hero-title">${iss.heroTitle}</div>
+        <div class="hero-sub">${iss.heroSub}</div>
       </div>
-      <span class="issue-count">${iss.articles.length}</span>
-    </a>
-  `).join('');
-  list.innerHTML = '<div class="sidebar-title">발행 목록</div>' + inner;
-}
-
-function renderFilterCounts() {
-  const issue = getIssue();
-  document.getElementById('fc-all').textContent    = issue.articles.length;
-  document.getElementById('fc-impact').textContent = issue.articles.filter(a=>a.type==='impact').length;
-  document.getElementById('fc-watch').textContent  = issue.articles.filter(a=>a.type==='watch').length;
-  document.getElementById('fc-ref').textContent    = issue.articles.filter(a=>a.type==='ref').length;
-}
-
-function renderHeader() {
-  const iss = getIssue();
-  const total   = iss.articles.length;
-  const impacts = iss.articles.filter(a=>a.type==='impact').length;
-  const watches = iss.articles.filter(a=>a.type==='watch').length;
-  document.getElementById('main-header').innerHTML = `
-    <div class="issue-week-badge">◆ ${iss.week} &nbsp;·&nbsp; ${iss.weekRange}</div>
-    <h1>${iss.heroTitle}</h1>
-    <p class="main-header-sub">${iss.heroSub}</p>
-    <div class="header-meta">
-      <div class="header-tags">${iss.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      <div class="header-stats">
-        <div class="stat-pill"><div class="stat-n">${total}</div><div class="stat-l">주요 이슈</div></div>
-        <div class="stat-pill"><div class="stat-n">${impacts}</div><div class="stat-l">직접 영향</div></div>
-        <div class="stat-pill"><div class="stat-n">${watches}</div><div class="stat-l">모니터링</div></div>
+      <div class="hero-tags">${iss.tags.map(t=>`<span class="htag">${t}</span>`).join('')}</div>
+    </div>
+    <div class="hero-right">
+      <div class="dash-label">이슈 현황</div>
+      <div class="dash-row">
+        ${types.map(type => `
+          <div class="dash-item ${cf===type?'active':''}" data-type="${type}" onclick="setFilter('${type}')">
+            <div class="dash-item-left">
+              <span class="dash-color dc-${type}"></span>
+              <span class="dash-name">${labels[type]}</span>
+            </div>
+            <div class="dash-right">
+              <span class="dash-count">${counts[type]}</span>
+              <div class="dash-bar-wrap">
+                <div class="dash-bar" style="width:${total>0?Math.round(counts[type]/total*100):0}%"></div>
+              </div>
+            </div>
+          </div>`).join('')}
       </div>
     </div>
   `;
 }
 
-function renderCards() {
-  const articles = filteredArticles();
-  const container = document.getElementById('cards-container');
+/* ── SPOTLIGHT ── */
+function renderSpotlight() {
+  const iss = issue();
+  const top = iss.articles.find(a=>a.type==='impact') || iss.articles[0];
+  const m   = BM[top.type];
+  document.getElementById('spotlight-block').innerHTML = `
+    <div class="spotlight-accent"></div>
+    <div class="spotlight-body">
+      <div>
+        <div class="sp-badge">◆ ${m.label}</div>
+        <div class="sp-title">${top.title}</div>
+        <div class="sp-text">${top.detail}</div>
+        <div class="sp-src">출처: ${top.source} · ${top.date}</div>
+      </div>
+      <div class="sp-cso">
+        <div class="sp-cso-label">CSO 영업 영향</div>
+        <div class="sp-cso-text">${top.cso}</div>
+      </div>
+    </div>
+  `;
+  document.getElementById('spotlight-block').dataset.idx = iss.articles.indexOf(top);
+}
+function spotlightClick() {
+  const idx = parseInt(document.getElementById('spotlight-block').dataset.idx);
+  cf = 'all';
+  oi = (oi === idx ? -1 : idx);
+  renderCards();
+  setTimeout(()=>{
+    const card = document.querySelector('.card.is-open');
+    if(card) card.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 60);
+}
 
-  if (articles.length === 0) {
-    container.innerHTML = `<div class="empty">해당 분류의 이슈가 없습니다.</div>`;
+/* ── CARDS ── */
+function renderCards() {
+  const arts = cf==='all' ? issue().articles : issue().articles.filter(a=>a.type===cf);
+  const label = {all:'전체 이슈', impact:'직접 영향 이슈', watch:'주의 모니터링 이슈', ref:'참고 이슈'}[cf];
+  document.getElementById('cards-label').textContent = label;
+
+  if (!arts.length) {
+    document.getElementById('cards-grid').innerHTML = '<div class="empty">해당 분류의 이슈가 없습니다.</div>';
     return;
   }
 
-  container.innerHTML = articles.map((art, idx) => {
-    const meta = badgeMeta[art.type];
-    const realIdx = getIssue().articles.indexOf(art);
+  document.getElementById('cards-grid').innerHTML = arts.map(art => {
+    const ri = issue().articles.indexOf(art);
+    const m  = BM[art.type];
+    const open = oi === ri;
     return `
-      <div class="card ${art.type} ${openArticleIdx === realIdx ? 'active' : ''}" onclick="toggleDetail(${realIdx})">
-        <div class="card-top">
-          <span class="badge ${meta.cls}">${meta.label}</span>
-          <span class="card-cat">${art.category}</span>
-          <span class="card-date">${art.date}</span>
+      <div class="card ${open?'is-open':''}" onclick="toggleCard(${ri})">
+        <div class="card-stripe ${m.stripe}"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="badge ${m.cls}">${m.label}</span>
+            <span class="card-cat">${art.category}</span>
+            <span class="card-date">${art.date}</span>
+          </div>
+          <h3>${art.title}</h3>
+          <p class="card-summary">${art.summary}</p>
+          <div class="card-footer">
+            <span class="card-src">출처: ${art.source}</span>
+            <span class="card-toggle">${open?'▲ 접기':'▼ 상세보기'}</span>
+          </div>
         </div>
-        <h2>${art.title}</h2>
-        <p class="card-summary">${art.summary}</p>
-        <div class="card-footer">
-          <span class="card-src">출처: ${art.source}</span>
-          <span class="card-arrow">${openArticleIdx === realIdx ? '▲' : '▼'}</span>
+        <div class="drawer ${open?'open':''}">
+          <p class="drawer-detail">${art.detail}</p>
+          <div class="drawer-cso">
+            <div class="drawer-cso-label">CSO 영업 영향</div>
+            <p class="drawer-cso-text">${art.cso}</p>
+          </div>
+          <div class="drawer-foot">
+            <span class="drawer-meta">출처: ${art.source} · ${art.date}</span>
+            <a class="src-link" href="${art.sourceUrl}" target="_blank" rel="noopener">원문 보기 ↗</a>
+          </div>
         </div>
-      </div>
-      ${openArticleIdx === realIdx ? renderDrawer(art) : ''}
-    `;
+      </div>`;
   }).join('');
+
+  /* 대시보드 active 상태 동기화 */
+  document.querySelectorAll('.dash-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.type === cf);
+  });
 }
 
-function renderDrawer(art) {
-  const meta = badgeMeta[art.type];
-  return `
-    <div class="detail-drawer open">
-      <div class="drawer-header">
-        <div class="drawer-header-left">
-          <div class="drawer-badges">
-            <span class="badge ${meta.cls}">${meta.label}</span>
-            <span class="badge" style="background:var(--gray-100);color:var(--gray-600);border:1px solid var(--border)">${art.category}</span>
-          </div>
-          <div class="drawer-title">${art.title}</div>
-        </div>
-        <button class="drawer-close" onclick="closeDetail(event)">✕</button>
-      </div>
-      <div class="drawer-body">
-        <div class="drawer-section">
-          <div class="drawer-section-title">이슈 요약</div>
-          <p class="drawer-text">${art.detail}</p>
-        </div>
-        <div class="drawer-section">
-          <div class="cso-block">
-            <div class="cso-label">◆ CSO 영업 영향</div>
-            <p class="cso-text">${art.cso}</p>
-          </div>
-        </div>
-        <div class="drawer-section" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-          <span style="font-size:12px;color:var(--text-muted)">출처: ${art.source} · ${art.date}</span>
-          <a class="source-link" href="${art.sourceUrl}" target="_blank" rel="noopener">원문 기사 보기 ↗</a>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function toggleDetail(idx) {
-  openArticleIdx = openArticleIdx === idx ? -1 : idx;
+/* ── 이벤트 ── */
+function toggleCard(idx) {
+  oi = oi === idx ? -1 : idx;
   renderCards();
-  if (openArticleIdx !== -1) {
-    setTimeout(() => {
-      const drawers = document.querySelectorAll('.detail-drawer.open');
-      if (drawers.length) drawers[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 50);
-  }
 }
-
-function closeDetail(e) {
-  e.stopPropagation();
-  openArticleIdx = -1;
+function setFilter(type) {
+  cf = type; oi = -1;
+  renderHero();
+  renderCards();
+}
+function setIssue(val) {
+  ci = parseInt(val); cf = 'all'; oi = -1;
+  buildSelect();
+  renderHero();
+  renderSpotlight();
   renderCards();
 }
 
-function setIssue(idx) {
-  currentIssueIdx = idx;
-  currentFilter   = 'all';
-  openArticleIdx  = -1;
-  document.querySelectorAll('.filter-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
-  renderAll();
-}
-
-function setFilter(type, btn) {
-  currentFilter  = type;
-  openArticleIdx = -1;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCards();
-}
-
-function renderAll() {
-  renderSidebar();
-  renderFilterCounts();
-  renderHeader();
-  renderCards();
-}
-
-renderAll();
+/* ── INIT ── */
+buildSelect();
+renderHero();
+renderSpotlight();
+renderCards();
 </script>
 </body>
 </html>
